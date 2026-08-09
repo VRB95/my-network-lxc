@@ -4,7 +4,7 @@ set -Eeuo pipefail
 APP_REPO="https://github.com/VRB95/my-network.git"
 INSTALLER_BASE="https://raw.githubusercontent.com/VRB95/my-network-lxc/main"
 APP_DIR="/opt/mynetwork"
-DATA_DIR="/data/mynetwork"
+DATA_DIR="/data/myNetwork"
 BIN="/usr/local/bin/mynetwork"
 
 log() { printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
@@ -25,7 +25,7 @@ log "Installing Node.js 22"
 curl -fsSL "https://deb.nodesource.com/setup_22.x" | bash -
 apt-get install -y nodejs
 
-log "Cloning mynetwork"
+log "Cloning myNetwork"
 rm -rf "$APP_DIR"
 git clone "$APP_REPO" "$APP_DIR"
 
@@ -79,7 +79,7 @@ CGO_ENABLED=0 go build \
   -trimpath \
   -ldflags="-s -w" \
   -o "$BIN" \
-  ./cmd/mynetwork
+  ./cmd/myNetwork
 
 chmod 0755 "$BIN"
 
@@ -93,7 +93,7 @@ chmod 0755 /usr/local/sbin/mynetwork-update
 log "Creating systemd service"
 cat >/etc/systemd/system/mynetwork.service <<EOF
 [Unit]
-Description=mynetwork LAN Monitor
+Description=myNetwork LAN Monitor
 After=network-online.target
 Wants=network-online.target
 
@@ -115,7 +115,7 @@ sleep 2
 
 if ! systemctl is-active --quiet mynetwork; then
   journalctl -u mynetwork -n 100 --no-pager
-  die "my-network failed to start."
+  die "myNetwork failed to start."
 fi
 
-ok "my-network is running"
+ok "myNetwork is running"
