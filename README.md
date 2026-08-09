@@ -1,6 +1,6 @@
-# myNetwork LXC
+# my-network LXC
 
-Simple Proxmox LXC installer for [myNetwork](https://github.com/VRB95/my-network).
+Simple Proxmox LXC installer for [my-network](https://github.com/VRB95/my-network).
 
 It creates a Debian 13 LXC, builds myNetwork from source, configures a systemd service, and installs a one-command updater.
 
@@ -38,6 +38,12 @@ Then run:
 
 ```bash
 mynetwork-update
+```
+
+or 
+
+```bash
+/usr/local/sbin/mynetwork-update
 ```
 
 The updater fetches the latest `main` branch and builds the new frontend/backend while the current service is still running. The live service is stopped only after the new build succeeds.
