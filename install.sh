@@ -46,6 +46,7 @@ tar -C /usr/local -xzf "/tmp/go${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
 rm -f "/tmp/go${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
 ln -sf /usr/local/go/bin/go /usr/local/bin/go
 ln -sf /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+export PATH="/usr/local/go/bin:/usr/local/bin:$PATH"
 
 log "Building frontend"
 cd "$APP_DIR/frontend"
